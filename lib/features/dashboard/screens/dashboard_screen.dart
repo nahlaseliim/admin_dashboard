@@ -1,7 +1,10 @@
 import 'package:admin_dashboard/features/dashboard/ui/widgets/dashboard_card.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/SidebarItem.dart';
+import '../ui/views/DashboardView.dart';
+import '../ui/views/OrdersView.dart';
+import '../ui/views/UsersView.dart';
+import '../ui/widgets/SidebarItem.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -84,72 +87,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               )
           ),
-    Expanded(
-    child: Container(
-    color: Colors.grey.shade100,
-    padding: const EdgeInsets.all(16),
-    child: SingleChildScrollView(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height,
-        ),
-        child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-
-        children: [
-        const Text(
-        "Dashboard Overview",
-        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-
-        const SizedBox(height: 8),
-          const Text(
-            "Here’s what’s happening today",
-            style: TextStyle(color: Colors.grey),
+          Expanded(
+            child: Container(
+              color: Colors.grey.shade100,
+              padding: const EdgeInsets.all(16),
+              child: Builder(
+                builder: (context) {
+                  switch (selectedIndex) {
+                    case 0:
+                      return DashboardView();
+                    case 1:
+                      return UsersView();
+                    case 2:
+                      return OrdersView();
+                    default:
+                      return Center(child: Text("Page not found"));
+                  }
+                },
+              ),
+            ),
           ),
-
-          const SizedBox(height: 25),
-          Row(
-            children: const [
-              DashboardCard(
-                title: "Users",
-                value: "1200",
-                icon: Icons.people,
-                color: Colors.blue,
-              ),
-              DashboardCard(
-                title: "Orders",
-                value: "320",
-                icon: Icons.shopping_cart,
-                color: Colors.orange,
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 20),
-
-          Row(
-            children: const [
-              DashboardCard(
-                title: "Revenue",
-                value: "\$5,430",
-                icon: Icons.attach_money,
-                color: Colors.green,
-              ),
-              DashboardCard(
-                title: "Reports",
-                value: "12",
-                icon: Icons.bar_chart,
-                color: Colors.purple,
-              ),
-            ],
-          ),
-        ]
-        ),
-      ),
-    )
-    )
-    )
     ],
 
   )

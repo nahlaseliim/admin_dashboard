@@ -1,4 +1,4 @@
-import 'package:admin_dashboard/features/dashboard/ui/dashboard_screen.dart';
+import 'package:admin_dashboard/features/dashboard/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

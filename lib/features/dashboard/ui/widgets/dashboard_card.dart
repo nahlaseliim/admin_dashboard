@@ -22,7 +22,7 @@ class DashboardCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         elevation: 3,
-        margin: const EdgeInsets.only(right: 10),
+        margin: const EdgeInsets.only(right: 8),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

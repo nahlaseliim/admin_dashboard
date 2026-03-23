@@ -1,8 +1,23 @@
 import 'package:admin_dashboard/features/dashboard/ui/widgets/dashboard_card.dart';
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatelessWidget {
+import 'widgets/SidebarItem.dart';
+
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+
+  int selectedIndex = 0;
+  void onItemTapped(int index) {
+  setState(() {
+  selectedIndex = index;
+  });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +57,28 @@ class DashboardScreen extends StatelessWidget {
                          ),
 
                          const SizedBox(height: 20),
-                         Container(
-                           margin: const EdgeInsets.symmetric(horizontal: 10),
-                           decoration: BoxDecoration(
-                             color: Colors.white.withOpacity(0.1),
-                             borderRadius: BorderRadius.circular(10),
+                         SidebarItem(
+                             title: 'Dashboard',
+                             icon: Icons.dashboard,
+                             index: 0,
+                             selectedIndex: selectedIndex,
+                             onTap: onItemTapped,
                            ),
-                           child: const ListTile(
-                             leading: Icon(Icons.dashboard, color: Colors.white),
-                             title: Text("Dashboard", style: TextStyle(color: Colors.white)),
-                           ),
+
+                         SidebarItem(
+                           title: 'Users',
+                           icon: Icons.people,
+                           index: 1,
+                           selectedIndex: selectedIndex,
+                           onTap: onItemTapped,
                          ),
-                       const ListTile(
-                          leading: Icon(Icons.people, color: Colors.white),
-                          title: Text("Users", style: TextStyle(color: Colors.white)),
-                        ),
-                       const ListTile(
-                          leading: Icon(Icons.shopping_basket_rounded, color: Colors.white),
-                          title: Text("Orders", style: TextStyle(color: Colors.white)),
-                        ),
+                         SidebarItem(
+                           title: 'Orders',
+                           icon: Icons.shopping_basket_rounded,
+                           index: 2,
+                           selectedIndex: selectedIndex,
+                           onTap: onItemTapped,
+                         ),
                       ]
                   ),
                 ),

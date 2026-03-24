@@ -1,9 +1,5 @@
-import 'package:admin_dashboard/features/dashboard/ui/widgets/dashboard_card.dart';
+import 'package:admin_dashboard/features/dashboard/ui/views/getSelectedView.dart';
 import 'package:flutter/material.dart';
-
-import '../ui/views/DashboardView.dart';
-import '../ui/views/OrdersView.dart';
-import '../ui/views/UsersView.dart';
 import '../ui/widgets/SidebarItem.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -24,9 +20,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDesktop = MediaQuery.of(context).size.width > 800;
     return Scaffold(
 
       body:
+      isDesktop ?
       Row(
         children: [
           Container(
@@ -122,20 +120,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const SizedBox(height: 20),
 
                   Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        switch (selectedIndex) {
-                          case 0:
-                            return DashboardView();
-                          case 1:
-                            return UsersView();
-                          case 2:
-                            return OrdersView();
-                          default:
-                            return Center(child: Text("Page not found"));
-                        }
-                      },
-                    ),
+                    child:getSelectedView(selectedIndex),
                   ),
                 ],
               )
@@ -144,7 +129,73 @@ class _DashboardScreenState extends State<DashboardScreen> {
     ],
 
   )
+        : Scaffold(
+        appBar: AppBar(
+          title: const Text("Dashboard"),
+        ),
+        drawer: Drawer(
+          backgroundColor: Colors.blueGrey,
+          child: SingleChildScrollView(
+            child: Column(
+                children:
+                [
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Admin Panel",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
 
+                      ),
+                      const SizedBox(width: 10),
+                      Icon(Icons.admin_panel_settings
+                          , color: Colors.white, size: 26),
+                    ],
+                  ),
+
+                  const SizedBox(height: 20),
+                  SidebarItem(
+                    title: 'Dashboard',
+                    icon: Icons.dashboard,
+                    index: 0,
+                    selectedIndex: selectedIndex,
+                    onTap: (index) {
+                      onItemTapped(index);
+                      Navigator.pop(context);
+                    },
+                  ),
+
+                  SidebarItem(
+                    title: 'Users',
+                    icon: Icons.people,
+                    index: 1,
+                    selectedIndex: selectedIndex,
+                    onTap: (index){
+                      onItemTapped(index);
+                      Navigator.pop(context);
+                    }
+                  ),
+                  SidebarItem(
+                    title: 'Orders',
+                    icon: Icons.shopping_basket_rounded,
+                    index: 2,
+                    selectedIndex: selectedIndex,
+                      onTap: (index){
+                        onItemTapped(index);
+                        Navigator.pop(context);
+                      }
+                  ),
+                ]
+            ),
+          ),
+        ),
+        body: getSelectedView(selectedIndex)
+    ),
     );
   }
 }

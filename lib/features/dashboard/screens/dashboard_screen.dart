@@ -91,20 +91,54 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Container(
               color: Colors.grey.shade100,
               padding: const EdgeInsets.all(16),
-              child: Builder(
-                builder: (context) {
-                  switch (selectedIndex) {
-                    case 0:
-                      return DashboardView();
-                    case 1:
-                      return UsersView();
-                    case 2:
-                      return OrdersView();
-                    default:
-                      return Center(child: Text("Page not found"));
-                  }
-                },
-              ),
+              child: Column(
+                children: [
+
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: "Search...",
+                              prefixIcon: Icon(Icons.search),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        Icon(Icons.notifications_none),
+                        const SizedBox(width: 10),
+                        CircleAvatar(child: Icon(Icons.person)),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  Expanded(
+                    child: Builder(
+                      builder: (context) {
+                        switch (selectedIndex) {
+                          case 0:
+                            return DashboardView();
+                          case 1:
+                            return UsersView();
+                          case 2:
+                            return OrdersView();
+                          default:
+                            return Center(child: Text("Page not found"));
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              )
             ),
           ),
     ],

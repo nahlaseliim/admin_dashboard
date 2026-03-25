@@ -6,68 +6,69 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height,
-            ),
-            child: Padding(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: MediaQuery.of(context).size.height,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
 
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: [
-                const Text(
+            children: [
+              const Text(
                 "Dashboard Overview",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,
+                color: Colors.blueGrey,
+                ),
               ),
 
               const SizedBox(height: 8),
-                  const Text(
-                  "Here’s what’s happening today",
-                  style: TextStyle(color: Colors.grey),
-                  ),
+              const Text(
+                "Here’s what’s happening today",
+                style: TextStyle(color: Colors.grey),
+              ),
 
-                  const SizedBox(height: 25),
-                  Row(
-                  children: const [
+              const SizedBox(height: 25),
+              Row(
+                children: const [
                   DashboardCard(
-                  title: "Users",
-                  value: "1200",
-                  icon: Icons.people,
-                  color: Colors.blue,
-                  ),
-                  DashboardCard(
-                  title: "Orders",
-                  value: "320",
-                  icon: Icons.shopping_cart,
-                  color: Colors.orange,
-                  ),
-                  ],
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  Row(
-                  children: const [
-                  DashboardCard(
-                  title: "Revenue",
-                  value: "\$5,430",
-                  icon: Icons.attach_money,
-                  color: Colors.green,
+                    title: "Users",
+                    value: "1200",
+                    icon: Icons.people,
+                    color: Colors.blue,
                   ),
                   DashboardCard(
-                  title: "Reports",
-                  value: "12",
-                  icon: Icons.bar_chart,
-                  color: Colors.purple,
-                  ),
-                  ],
+                    title: "Orders",
+                    value: "320",
+                    icon: Icons.shopping_cart,
+                    color: Colors.orange,
                   ),
                 ],
               ),
-            ),
+
+              const SizedBox(height: 20),
+
+              Row(
+                children: const [
+                  DashboardCard(
+                    title: "Revenue",
+                    value: "\$5,430",
+                    icon: Icons.attach_money,
+                    color: Colors.green,
+                  ),
+                  DashboardCard(
+                    title: "Reports",
+                    value: "12",
+                    icon: Icons.bar_chart,
+                    color: Colors.purple,
+                  ),
+                ],
+              ),
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
 }

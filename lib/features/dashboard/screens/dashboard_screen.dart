@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/features/dashboard/ui/views/getSelectedView.dart';
+import 'package:admin_dashboard/features/dashboard/ui/widgets/topBarWidget.dart';
 import 'package:flutter/material.dart';
 import '../ui/widgets/SidebarItem.dart';
 
@@ -91,32 +92,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: "Search...",
-                              prefixIcon: Icon(Icons.search),
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 20),
-                        Icon(Icons.notifications_none),
-                        const SizedBox(width: 10),
-                        CircleAvatar(child: Icon(Icons.person)),
-                      ],
-                    ),
-                  ),
-
+                const  TopBarWidget(),
                   const SizedBox(height: 20),
 
                   Expanded(
@@ -131,7 +107,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   )
         : Scaffold(
         appBar: AppBar(
-          title: const Text("Dashboard"),
+          title: const Text("Dashboard",
+          style: TextStyle(
+                color: Colors.black,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              )),
         ),
         drawer: Drawer(
           backgroundColor: Colors.blueGrey,
@@ -143,6 +124,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+
                       const Text(
                         "Admin Panel",
                         style: TextStyle(
@@ -194,7 +176,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
         ),
-        body: getSelectedView(selectedIndex)
+        body: Column(
+          children: [
+            const  TopBarWidget(),
+            const SizedBox(height: 20),
+             Expanded(
+               child:
+                 getSelectedView(selectedIndex)
+               ),
+
+          ],
+        )
     ),
     );
   }

@@ -1,20 +1,15 @@
+import 'package:admin_dashboard/core/constants/api_constants.dart';
 import 'package:admin_dashboard/features/dashboard/data/models/dashboard_model.dart';
 import 'package:dio/dio.dart';
 
 class DashboardService {
-  final Dio dio = Dio();
+  final Dio dio = Dio(BaseOptions(baseUrl: ApiConstants.baseUrl));
 
   Future<DashboardModel> getDashboardData() async {
-    final usersRes = await dio.get(
-      'https://jsonplaceholder.typicode.com/users',
-    );
-    final ordersRes = await dio.get(
-      'https://jsonplaceholder.typicode.com/posts',
-    );
-   double revenueCalculation = ordersRes.data.length * 30;
-final reportsRes = await dio.get(
-      'https://jsonplaceholder.typicode.com/comments',
-    );
+    final usersRes = await dio.get(ApiConstants.userEndpoint);
+    final ordersRes = await dio.get(ApiConstants.orderEndpoint);
+    double revenueCalculation = ordersRes.data.length * 30;
+    final reportsRes = await dio.get(ApiConstants.reportEndpoint);
 
     return DashboardModel(
       usersCount: usersRes.data.length,

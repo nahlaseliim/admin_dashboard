@@ -7,8 +7,8 @@ abstract class UserState {}
 class UserInitial extends UserState {}
 class UserLoading extends UserState {}
 class UserSuccess extends UserState {
-  final UserModel data;
-  UserSuccess(this.data);
+  final List<UserModel> users;
+  UserSuccess(this.users);
 }
 class UserError extends UserState {
   final String message;

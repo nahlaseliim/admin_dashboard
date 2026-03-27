@@ -1,7 +1,8 @@
-import 'package:admin_dashboard/features/dashboard/ui/views/getSelectedView.dart';
-import 'package:admin_dashboard/features/dashboard/ui/widgets/topBarWidget.dart';
 import 'package:flutter/material.dart';
+import '../ui/views/getSelectedView.dart';
 import '../ui/widgets/SidebarItem.dart';
+import '../ui/widgets/topBarWidget.dart';
+
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});

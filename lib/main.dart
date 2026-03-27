@@ -1,8 +1,7 @@
-import 'package:admin_dashboard/features/dashboard/logic/dashboard_cubit/dashboard_cubit.dart';
-import 'package:admin_dashboard/features/dashboard/data/services/dashboard_service.dart';
-import 'package:admin_dashboard/features/dashboard/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'features/dashboard/presentation/screens/dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
